@@ -47,11 +47,24 @@ let fontWeight = 900;
 let x = 3;
 let y = 4.3;
 
-let size = 500;
-let w = size * x;
-let h = size * y;
+let originalResolution = 500;
+let scale = 0.4;
+let resolution = originalResolution * scale;
+let w = resolution * x;
+let h = resolution * y;
 
 var canvas = new fabric.Canvas('c', { preserveObjectStacking: true, width: w, height: h, backgroundColor: "#fff", isDrawingMode: true });
+
+resHandle.addEventListener('change', (evt) => {
+    console.log(evt.target.value);
+    scale = parseFloat(evt.target.value);
+    resolution = originalResolution * scale;
+    w = resolution * x;
+    h = resolution * y;    
+    canvas.setDimensions({width:w, height:h});
+    canvas.freeDrawingBrush.width = 4 * scale;
+    drawLetter();
+})
 
 
 next.addEventListener('click', () => {
@@ -98,13 +111,13 @@ let drawLetter = () => {
         height: 0.1 * w,
         left: 0.05 * w,
         top: 0.05 * w,
-        fill: 'transparent', stroke: '#000', strokeWidth: 3, rx: 10, ry: 10
+        fill: 'transparent', stroke: '#000', strokeWidth: 4 * scale, rx: 10 * scale, ry: 10 * scale
     }))
 
     canvas.add(new fabric.Text(letter.char, {
         selectable: false, eventable: false,
         fontWeight: 'normal', textAlign: 'left', fontFamily: jpFont, fontWeight: fontWeight,
-        top: 0.005 * w + 0.1 * w, left: 0.05 * w + 0.1 * w, originX: 'center', originY: 'center', fontSize: 100
+        top: 0.005 * w + 0.1 * w, left: 0.05 * w + 0.1 * w, originX: 'center', originY: 'center', fontSize: 100 * scale
     }));
 
     canvas.add(new fabric.Rect({
@@ -113,13 +126,13 @@ let drawLetter = () => {
         height: 0.1 * w,
         left: 0.3 * w,
         top: 0.05 * w,
-        fill: 'transparent', stroke: '#000', strokeWidth: 3, rx: 10, ry: 10
+        fill: 'transparent', stroke: '#000', strokeWidth: 4 * scale, rx: 10 * scale, ry: 10 * scale
     }))
 
     canvas.add(new fabric.Text(letter.romanization, {
         selectable: false, eventable: false,
         fontWeight: 'normal', textAlign: 'left', fontFamily: 'Noto Sans',
-        top: 0.005 * w + 0.1 * w, left: 0.3 * w + 0.1 * w, originX: 'center', originY: 'center', fontSize: 120
+        top: 0.005 * w + 0.1 * w, left: 0.3 * w + 0.1 * w, originX: 'center', originY: 'center', fontSize: 120 * scale
     }));
 
     canvas.add(new fabric.Rect({
@@ -128,13 +141,13 @@ let drawLetter = () => {
         height: 0.1 * w,
         left: 0.55 * w,
         top: 0.05 * w,
-        fill: 'transparent', stroke: '#000', strokeWidth: 3, rx: 10, ry: 10
+        fill: 'transparent', stroke: '#000', strokeWidth: 4 * scale, rx: 10 * scale, ry: 10 * scale
     }))
 
     canvas.add(new fabric.Text(letter.name.toLowerCase(), {
         selectable: false, eventable: false, backgroundColor: '#fff',
         fontWeight: 'normal', textAlign: 'left', fontFamily: 'Noto Sans',
-        top: 0.005 * w + 0.1 * w, left: 0.55 * w + 0.2 * w, originX: 'center', originY: 'center', fontSize: 40
+        top: 0.005 * w + 0.1 * w, left: 0.55 * w + 0.2 * w, originX: 'center', originY: 'center', fontSize: 40 * scale
     }));
 
     // 18 x 21
@@ -149,7 +162,7 @@ let drawLetter = () => {
             selectable: false, eventable: false,
             left: 0.05 * w + (letterBoxContainerW / boxCountH * ii),
             top: w * 0.2,
-            width: 3,
+            width: 4 * scale,
             height: 1.15 * w,
             fill: '#ccc'
         }));
@@ -162,7 +175,7 @@ let drawLetter = () => {
             left: 0.05 * w,
             top: w * 0.2 + (letterBoxContainerH / boxCountV * ii),
             width: 0.9 * w,
-            height: 3,
+            height: 4 * scale,
             fill: '#ccc'
         }));
     }
@@ -175,7 +188,7 @@ let drawLetter = () => {
                 selectable: false, eventable: false,
                 fontWeight: 'normal', textAlign: 'left', fontFamily: jpFont,
                 left: 0.05 * w + (letterBoxContainerW / boxCountH * jj) + (letterBoxContainerW / boxCountH) / 2, opacity: 0.1, fontWeight: fontWeight,
-                top: w * 0.2 + (letterBoxContainerH / boxCountV * ii) + (letterBoxContainerH / boxCountV) / 2, originX: 'center', originY: 'center', fontSize: 700 / boxCountH
+                top: w * 0.2 + (letterBoxContainerH / boxCountV * ii) + (letterBoxContainerH / boxCountV) / 2, originX: 'center', originY: 'center', fontSize: 700 / boxCountH * scale
             }));
         }
     }
@@ -197,9 +210,9 @@ clearEl.addEventListener('click', () => drawLetter());
 if (canvas.freeDrawingBrush) {
     canvas.freeDrawingBrush.color = '#000';
     //canvas.freeDrawingBrush.source = canvas.freeDrawingBrush;
-    canvas.freeDrawingBrush.width = 3;
+    canvas.freeDrawingBrush.width = 4 * scale;
     canvas.freeDrawingBrush.shadow = new fabric.Shadow({
-        blur: 3,
+        blur: 2,
         offsetX: 0,
         offsetY: 0,
         affectStroke: true,

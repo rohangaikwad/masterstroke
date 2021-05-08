@@ -7,15 +7,16 @@ body {
 }
 
 .canvas-container {
-    max-height: 90vh; margin: 0 auto; max-width: 95%;
-    canvas { height: auto!important; width: auto!important; max-height: 100%!important; max-width: 100%!important; left: 50%!important; transform: translateX(-50%); }
+    height: 90vh!important; margin: 0 auto; width: 95%!important;
+    canvas { height: auto!important; width: 100%!important; max-height: 100%!important; max-width: 100%!important; left: 50%!important; transform: translateX(-50%); }
 }
 
 #details {
-    display: flex; padding: 30px 2.5%;
+    display: flex; padding: 30px 2.5% 30px;
     #down { margin-left: auto; }
     #weights { margin: 0 auto; display: flex; }
 }
+#resHandle { margin: 0 auto; }
 
 @font-face {
     font-family: 'IPAex Mincho';
