@@ -15,22 +15,24 @@
 </head>
 <body>
     <div id="details">
-        <button id="prev">Prev</button>
-        <button id="next">Next</button>
-        <button id="clearEl">Clear Drawing</button>
-        <button id="boxMinus">Box --</button>
-        <button id="boxPlus">Box ++</button>
+        <button id="prev"><<</button>
+        <button id="next">>></button>
+        <button id="boxMinus">Box -</button>
+        <button id="boxPlus">Box +</button>
         <span id="weights">
-            <button id="w200">200</button>
-            <button id="w300">300</button>
+            <!-- <button id="w200">200</button>
+            <button id="w300">300</button> -->
             <button id="w400">400</button>
             <button id="w500">500</button>
             <button id="w600">600</button>
             <button id="w700">700</button>
             <button id="w900">900</button>
         </span>
+        <input type="range" min="0.2" max="1" step="0.05" id="resHandle">
         <button id="down">Download</button>
+        <button id="clearEl">Clear</button>
     </div>
+    
     <canvas id="c"></canvas>
     <script src="js/main.js"></script>
 </body>
