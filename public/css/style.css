@@ -9,7 +9,6 @@ body {
 .canvas-container {
   max-height: 90vh;
   margin: 0 auto;
-  margin-top: 1vh;
   max-width: 95%; }
   .canvas-container canvas {
     height: auto !important;
@@ -18,3 +17,9 @@ body {
     max-width: 100% !important;
     left: 50% !important;
     transform: translateX(-50%); }
+
+#details {
+  display: flex;
+  padding: 30px 2.5%; }
+  #details #down {
+    margin-left: auto; }
