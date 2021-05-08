@@ -3,27 +3,37 @@ let activeLetter = 0;
 let count = 0;
 
 var font1 = new FontFaceObserver('Noto Sans', { weight: 400 });
-var font2 = new FontFaceObserver('Noto Sans JP', { weight: 400 });
-var font3 = new FontFaceObserver('Noto Sans JP', { weight: 700 });
+var font2 = new FontFaceObserver('Noto Sans JP', { weight: 100 });
+var font3 = new FontFaceObserver('Noto Sans JP', { weight: 300 });
+var font4 = new FontFaceObserver('Noto Sans JP', { weight: 400 });
+var font5 = new FontFaceObserver('Noto Sans JP', { weight: 500 });
+var font6 = new FontFaceObserver('Noto Sans JP', { weight: 700 });
+var font7 = new FontFaceObserver('Noto Sans JP', { weight: 900 });
+
+Promise.all([
+    font1.load('a'), font2.load('あ'), font3.load('あ'), font4.load('あ'), font5.load('あ'), font6.load('あ'), font7.load('あ')
+]).then(function () {
+    console.log('Font is available');
+    fetch('/data/hiragana.json')
+        .then(data => data.json())
+        .then(data => {
+            let d = data.filter(l => l.name.toLowerCase().indexOf('small') == -1);
+            letters = d;
+            count = d.length;
+            drawLetter();
+            console.log(d);
+        })
+        .catch(err => console.log(err));
+});
 
 
-font1.load('a').then(() => {
-    font2.load('あ').then(() => {
-        font3.load('あ').then(() => {
-            console.log('Font is available');
-            fetch('/data/hiragana.json')
-                .then(data => data.json())
-                .then(data => {
-                    let d = data.filter(l => l.name.toLowerCase().indexOf('small') == -1);
-                    letters = d;
-                    count = d.length;
-                    drawLetter();
-                    console.log(d);
-                })
-                .catch(err => console.log(err));
-        });
-    })
-})
+// font1.load('a').then(() => {
+//     font2.load('あ').then(() => {
+//         font3.load('あ').then(() => {
+            
+//         });
+//     })
+// })
 
 
 
@@ -60,6 +70,14 @@ boxMinus.addEventListener('click', () => {
 boxPlus.addEventListener('click', () => {
     boxCountH++;
     drawLetter();
+})
+
+let fontWeight = 700;
+weights.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', (evt) => {
+        fontWeight = evt.target.innerText;
+        drawLetter();
+    })
 })
 
 
@@ -153,7 +171,7 @@ let drawLetter = () => {
             canvas.add(new fabric.Text(letter.char, {
                 selectable: false, eventable: false,
                 fontWeight: 'normal', textAlign: 'left', fontFamily: 'Noto Sans JP',
-                left: 0.05 * w + (letterBoxContainerW / boxCountH * jj) + (letterBoxContainerW / boxCountH) / 2, opacity: 0.1, fontWeight: '700',
+                left: 0.05 * w + (letterBoxContainerW / boxCountH * jj) + (letterBoxContainerW / boxCountH) / 2, opacity: 0.1, fontWeight: fontWeight,
                 top: w * 0.2 + (letterBoxContainerH / boxCountV * ii) + (letterBoxContainerH / boxCountV) / 2, originX: 'center', originY: 'center', fontSize: 700 / boxCountH
             }));
         }
