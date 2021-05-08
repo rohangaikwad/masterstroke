@@ -23,3 +23,6 @@ body {
   padding: 30px 2.5%; }
   #details #down {
     margin-left: auto; }
+  #details #weights {
+    margin: 0 auto;
+    display: flex; }
