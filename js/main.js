@@ -180,7 +180,7 @@ let drawLetter = () => {
 
 down.addEventListener('click', () => {
     canvas.getElement().toBlob(function (blob) {
-        saveAs(blob, letters[activeLetter].romanization + '.jpg');
+        saveAs(blob, letters[activeLetter].romanization + '_' + fontWeight + '.jpg');
     });
 });
 
