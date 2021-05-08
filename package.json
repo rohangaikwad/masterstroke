@@ -5,7 +5,8 @@
     "main": "index.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "deploy": "gh-pages -d public"
+        "deploy": "gh-pages -d public",
+        "css": "node-sass public/css/style.scss public/css/style.css -w"
     },
     "repository": {
         "type": "git",

@@ -7,9 +7,10 @@ body {
   background-color: #f1f1f1; }
 
 .canvas-container {
-  max-height: 98vh;
+  max-height: 90vh;
   margin: 0 auto;
-  margin-top: 1vh; }
+  margin-top: 1vh;
+  max-width: 95%; }
   .canvas-container canvas {
     height: auto !important;
     width: auto !important;
