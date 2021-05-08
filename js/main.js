@@ -35,6 +35,18 @@ prev.addEventListener('click', () => {
     drawLetter();
 })
 
+let boxCountH = 12;
+boxMinus.addEventListener('click', () => {
+    boxCountH--;
+    boxCountH = Math.max(5, boxCountH);
+    drawLetter();
+})
+boxPlus.addEventListener('click', () => {
+    boxCountH++;
+    drawLetter();
+})
+
+
 let drawLetter = () => {
     let letter = letters[activeLetter];
     console.log(letter);
@@ -46,7 +58,7 @@ let drawLetter = () => {
     canvas.add(new fabric.Rect({
         selectable: false, eventable: false,
         width: 0.2 * w,
-        height: 0.2 * w,
+        height: 0.1 * w,
         left: 0.05 * w,
         top: 0.05 * w,
         fill: 'transparent', stroke: '#000', strokeWidth: 3, rx: 10, ry: 10
@@ -55,13 +67,13 @@ let drawLetter = () => {
     canvas.add(new fabric.Text(letter.char, {
         selectable: false, eventable: false,
         fontWeight: 'normal', textAlign: 'left', fontFamily: 'Noto Sans',
-        top: 0.05 * w + 0.1 * w, left: 0.05 * w + 0.1 * w, originX: 'center', originY: 'center', fontSize: 100
+        top: 0.005 * w + 0.1 * w, left: 0.05 * w + 0.1 * w, originX: 'center', originY: 'center', fontSize: 100
     }));
 
     canvas.add(new fabric.Rect({
         selectable: false, eventable: false,
         width: 0.2 * w,
-        height: 0.2 * w,
+        height: 0.1 * w,
         left: 0.3 * w,
         top: 0.05 * w,
         fill: 'transparent', stroke: '#000', strokeWidth: 3, rx: 10, ry: 10
@@ -70,71 +82,72 @@ let drawLetter = () => {
     canvas.add(new fabric.Text(letter.romanization, {
         selectable: false, eventable: false,
         fontWeight: 'normal', textAlign: 'left', fontFamily: 'Noto Sans',
-        top: 0.05 * w + 0.1 * w, left: 0.3 * w + 0.1 * w, originX: 'center', originY: 'center', fontSize: 120
+        top: 0.005 * w + 0.1 * w, left: 0.3 * w + 0.1 * w, originX: 'center', originY: 'center', fontSize: 120
     }));
 
     canvas.add(new fabric.Rect({
         selectable: false, eventable: false,
         width: 0.4 * w,
-        height: 0.2 * w,
+        height: 0.1 * w,
         left: 0.55 * w,
         top: 0.05 * w,
         fill: 'transparent', stroke: '#000', strokeWidth: 3, rx: 10, ry: 10
     }))
 
     canvas.add(new fabric.Text(letter.name.toLowerCase(), {
-        selectable: false, eventable: false,
+        selectable: false, eventable: false, backgroundColor: '#fff',
         fontWeight: 'normal', textAlign: 'left', fontFamily: 'Noto Sans',
-        top: 0.05 * w + 0.1 * w, left: 0.55 * w + 0.2 * w, originX: 'center', originY: 'center', fontSize: 60
+        top: 0.005 * w + 0.1 * w, left: 0.55 * w + 0.2 * w, originX: 'center', originY: 'center', fontSize: 40
     }));
 
+    // 18 x 21
+
+    let letterBoxContainerH = 1.15 * w;
+    let letterBoxContainerW = 0.9 * w;
+    let boxCountV = Math.floor((letterBoxContainerH*boxCountH)/letterBoxContainerW);
+
+    // vertical lines
+    for (let ii = 0; ii <= boxCountH; ii++) {
+        canvas.add(new fabric.Rect({
+            selectable: false, eventable: false,
+            left: 0.05 * w + (letterBoxContainerW/boxCountH * ii),
+            top: w * 0.2,
+            width: 3,
+            height: 1.15 * w,
+            fill: '#ccc'
+        }));
+    }
+
     // horizontal lines
-    for (let ii = 0; ii < 22; ii++) {
+    for (let ii = 0; ii <= boxCountV; ii++) {
         canvas.add(new fabric.Rect({
             selectable: false, eventable: false,
             left: 0.05 * w,
-            top: w * 0.3 + (w * 0.05 * ii),
+            top: w * 0.2 + (letterBoxContainerH/boxCountV * ii),
             width: 0.9 * w,
             height: 3,
             fill: '#ccc'
         }));
     }
-    // vertical lines
-    for (let ii = 0; ii < 19; ii++) {
-        canvas.add(new fabric.Rect({
-            selectable: false, eventable: false,
-            left: 0.05 * w + (w * 0.05 * ii),
-            top: w * 0.3,
-            width: 3,
-            height: 1.05 * w,
-            fill: '#ccc'
-        }));
-    }
 
 
     // horizontal lines
-    for (let ii = 0; ii < 21; ii++) {
-        canvas.add(new fabric.Text(letter.char, {
-            selectable: false, eventable: false,
-            fontWeight: 'normal', textAlign: 'left', fontFamily: 'Noto Sans',
-            left: 0.075 * w, opacity: (21 - ii) / 21,
-            top: 0.025 * w + w * 0.3 + (w * 0.05 * ii), originX: 'center', originY: 'center', fontSize: 40
-        }));
+    for (let ii = 0; ii < boxCountV; ii++) {
+        for (let jj = 0; jj < boxCountH; jj++) {
+            canvas.add(new fabric.Text(letter.char, {
+                selectable: false, eventable: false,
+                fontWeight: 'normal', textAlign: 'left', fontFamily: 'Noto Sans',
+                left: 0.05 * w + (letterBoxContainerW/boxCountH * jj) + (letterBoxContainerW/boxCountH)/2, opacity: 0.1, fontWeight: '700',
+                top: w * 0.2 + (letterBoxContainerH/boxCountV * ii) + (letterBoxContainerH/boxCountV)/2, originX: 'center', originY: 'center', fontSize: 700/boxCountH
+            }));
+        }        
     }
 }
 
-setTimeout(() => {
-    //saveImage();
-}, 1000)
-
 down.addEventListener('click', () => {
-    let link = document.createElement('a');
-    link.download = 'canvas.jpg';
-    link.href = canvas.toDataURL({
-        format: 'jpeg',
-        quality: 1
+    canvas.getElement().toBlob(function(blob) {
+        saveAs(blob, letters[activeLetter].romanization + '.jpg');
     });
-    link.click();
 });
 
 
