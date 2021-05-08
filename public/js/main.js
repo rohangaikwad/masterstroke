@@ -144,23 +144,9 @@ let drawLetter = () => {
     }
 }
 
-setTimeout(() => {
-    //saveImage();
-}, 1000)
-
 down.addEventListener('click', () => {
-    // let link = document.createElement('a');
-    // link.download = 'canvas.jpg';
-    // link.href = canvas.toDataURL({
-    //     format: 'jpeg',
-    //     quality: 1
-    // });
-    // link.click();
-
-    let letter = letters[activeLetter];
-
     canvas.getElement().toBlob(function(blob) {
-        saveAs(blob, letter.romanization + '.jpg');
+        saveAs(blob, letters[activeLetter].romanization + '.jpg');
     });
 });
 
