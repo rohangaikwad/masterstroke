@@ -10,6 +10,12 @@ var font5 = new FontFaceObserver('Noto Serif JP', { weight: 500 });
 var font6 = new FontFaceObserver('Noto Serif JP', { weight: 600 });
 var font7 = new FontFaceObserver('Noto Serif JP', { weight: 700 });
 var font8 = new FontFaceObserver('Noto Serif JP', { weight: 900 });
+var font10 = new FontFaceObserver('Noto Sans JP', { weight: 100 });
+var font11 = new FontFaceObserver('Noto Sans JP', { weight: 300 });
+var font12 = new FontFaceObserver('Noto Sans JP', { weight: 400 });
+var font13 = new FontFaceObserver('Noto Sans JP', { weight: 500 });
+var font14 = new FontFaceObserver('Noto Sans JP', { weight: 700 });
+var font15 = new FontFaceObserver('Noto Sans JP', { weight: 900 });
 
 Promise.all([
     font1.load('a'), font2.load('あ'), font3.load('あ'), font4.load('あ'), font5.load('あ'), font6.load('あ'), font7.load('あ'), font8.load('あ')
@@ -30,6 +36,27 @@ Promise.all([
 let jpFont = 'Noto Serif JP';
 let fontWeight = 900;
 
+let notoSansLoaded = false;
+notosans.addEventListener('click', () => {
+    if(!notoSansLoaded) {
+        Promise.all([
+            font10.load('あ'), font11.load('あ'), font12.load('あ'), font13.load('あ'), font14.load('あ'), font15.load('あ')
+        ]).then(function () {
+            notoSansLoaded = true;
+            jpFont = 'Noto Sans JP';
+            drawLetter();
+        });
+    } else {
+        jpFont = 'Noto Sans JP';
+        drawLetter();
+    }
+});
+
+notoserif.addEventListener('click', () => {
+    jpFont = 'Noto Serif JP';
+    drawLetter();
+});
+
 
 // font1.load('a').then(() => {
 //     font2.load('あ').then(() => {
@@ -48,7 +75,7 @@ let x = 3;
 let y = 4.3;
 
 let originalResolution = 500;
-let scale = 0.4;
+let scale = 0.5;
 let resolution = originalResolution * scale;
 let w = resolution * x;
 let h = resolution * y;
@@ -78,7 +105,7 @@ prev.addEventListener('click', () => {
     drawLetter();
 })
 
-let boxCountH = 12;
+let boxCountH = 8;
 boxMinus.addEventListener('click', () => {
     boxCountH--;
     boxCountH = Math.max(5, boxCountH);
