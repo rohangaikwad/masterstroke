@@ -28,7 +28,7 @@ Promise.all([
             letters = d;
             count = d.length;
             drawLetter();
-            console.log(d);
+            //console.log(d);
         })
         .catch(err => console.log(err));
 });
@@ -38,7 +38,7 @@ let fontWeight = 900;
 
 let notoSansLoaded = false;
 notosans.addEventListener('click', () => {
-    if(!notoSansLoaded) {
+    if (!notoSansLoaded) {
         Promise.all([
             font10.load('あ'), font11.load('あ'), font12.load('あ'), font13.load('あ'), font14.load('あ'), font15.load('あ')
         ]).then(function () {
@@ -61,7 +61,7 @@ notoserif.addEventListener('click', () => {
 // font1.load('a').then(() => {
 //     font2.load('あ').then(() => {
 //         font3.load('あ').then(() => {
-            
+
 //         });
 //     })
 // })
@@ -87,8 +87,8 @@ resHandle.addEventListener('change', (evt) => {
     scale = parseFloat(evt.target.value);
     resolution = originalResolution * scale;
     w = resolution * x;
-    h = resolution * y;    
-    canvas.setDimensions({width:w, height:h});
+    h = resolution * y;
+    canvas.setDimensions({ width: w, height: h });
     canvas.freeDrawingBrush.width = 4 * scale;
     drawLetter();
 })
@@ -108,7 +108,7 @@ prev.addEventListener('click', () => {
 let boxCountH = 8;
 boxMinus.addEventListener('click', () => {
     boxCountH--;
-    boxCountH = Math.max(5, boxCountH);
+    boxCountH = Math.max(1, boxCountH);
     drawLetter();
 })
 boxPlus.addEventListener('click', () => {
@@ -126,7 +126,6 @@ weights.querySelectorAll('button').forEach(btn => {
 
 let drawLetter = () => {
     let letter = letters[activeLetter];
-    console.log(letter);
 
     canvas.clear();
     canvas.backgroundColor = "#fff";
@@ -233,11 +232,11 @@ down.addEventListener('click', () => {
 clearEl.addEventListener('click', () => drawLetter());
 
 
-
+let brushWidth = 4;
 if (canvas.freeDrawingBrush) {
     canvas.freeDrawingBrush.color = '#000';
     //canvas.freeDrawingBrush.source = canvas.freeDrawingBrush;
-    canvas.freeDrawingBrush.width = 4 * scale;
+    canvas.freeDrawingBrush.width = brushWidth * scale;
     canvas.freeDrawingBrush.shadow = new fabric.Shadow({
         blur: 2,
         offsetX: 0,
@@ -246,3 +245,72 @@ if (canvas.freeDrawingBrush) {
         color: '#000',
     });
 }
+
+
+
+const pickr = Pickr.create({
+    el: '#picker',
+    theme: 'monolith', // or 'monolith', or 'nano'
+
+    swatches: [
+        'rgba(244, 67, 54, 1)',
+        'rgba(233, 30, 99, 0.95)',
+        'rgba(156, 39, 176, 0.9)',
+        'rgba(103, 58, 183, 0.85)',
+        'rgba(63, 81, 181, 0.8)',
+        'rgba(33, 150, 243, 0.75)',
+        'rgba(3, 169, 244, 0.7)',
+        'rgba(0, 188, 212, 0.7)',
+        'rgba(0, 150, 136, 0.75)',
+        'rgba(76, 175, 80, 0.8)',
+        'rgba(139, 195, 74, 0.85)',
+        'rgba(205, 220, 57, 0.9)',
+        'rgba(255, 235, 59, 0.95)',
+        'rgba(255, 193, 7, 1)'
+    ],
+
+    components: {
+
+        // Main components
+        preview: true,
+        opacity: true,
+        hue: true,
+
+        // Input / output Options
+        interaction: {
+            hex: true,
+            rgba: true,
+            hsla: true,
+            hsva: true,
+            cmyk: true,
+            input: true,
+            clear: true,
+            save: true
+        }
+    }
+});
+
+pickr.on('change', (color, source, instance) => {
+    let c = color.toHEXA().toString();
+    canvas.freeDrawingBrush.color = c;
+    canvas.freeDrawingBrush.shadow.color = c;
+    pickr.hide();
+}).on('swatchselect', (color, instance) => {
+    let c = color.toHEXA().toString();
+    canvas.freeDrawingBrush.color = c;
+    canvas.freeDrawingBrush.shadow.color = c;
+    pickr.hide();
+});
+
+noUiSlider.create(brushSize, {
+    start: 4,
+    orientation: "vertical",
+    range: {
+        min: 2,
+        max: 50
+    }
+});
+brushSize.noUiSlider.on('update', function (x) {
+    brushWidth = x[0];
+    canvas.freeDrawingBrush.width = brushWidth * scale;
+});
