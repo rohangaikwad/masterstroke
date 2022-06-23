@@ -1,0 +1,180 @@
+/* biz-udpmincho-regular - japanese */
+@font-face {
+  font-family: "BIZ UDPMincho";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""),
+    url("fonts/biz-udpmincho-v5-japanese-regular.woff2") format("woff2");
+}
+
+/* kokoro-regular - japanese */
+@font-face {
+  font-family: "Kokoro";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""),
+    url("fonts/kokoro.woff") format("woff");
+}
+/* kokoro-regular - japanese */
+@font-face {
+  font-family: "MHGKyokashotaiTHK";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""),
+    url("fonts/MHGKyokashotaiTHK-Light.woff2") format("woff2");
+}
+
+/* noto-serif-jp-200 - japanese */
+@font-face {
+  font-family: "Noto Serif JP";
+  font-style: normal;
+  font-weight: 200;
+  src: local(""),
+    url("fonts/noto-serif-jp-v21-japanese-200.woff2") format("woff2");
+}
+/* noto-serif-jp-300 - japanese */
+@font-face {
+  font-family: "Noto Serif JP";
+  font-style: normal;
+  font-weight: 300;
+  src: local(""),
+    url("fonts/noto-serif-jp-v21-japanese-300.woff2") format("woff2");
+}
+/* noto-serif-jp-regular - japanese */
+@font-face {
+  font-family: "Noto Serif JP";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""),
+    url("fonts/noto-serif-jp-v21-japanese-regular.woff2") format("woff2");
+}
+/* noto-serif-jp-600 - japanese */
+@font-face {
+  font-family: "Noto Serif JP";
+  font-style: normal;
+  font-weight: 600;
+  src: local(""),
+    url("fonts/noto-serif-jp-v21-japanese-600.woff2") format("woff2");
+}
+/* noto-serif-jp-700 - japanese */
+@font-face {
+  font-family: "Noto Serif JP";
+  font-style: normal;
+  font-weight: 700;
+  src: local(""),
+    url("fonts/noto-serif-jp-v21-japanese-700.woff2") format("woff2");
+}
+/* noto-serif-jp-500 - japanese */
+@font-face {
+  font-family: "Noto Serif JP";
+  font-style: normal;
+  font-weight: 500;
+  src: local(""),
+    url("fonts/noto-serif-jp-v21-japanese-500.woff2") format("woff2");
+}
+/* noto-serif-jp-900 - japanese */
+@font-face {
+  font-family: "Noto Serif JP";
+  font-style: normal;
+  font-weight: 900;
+  src: local(""),
+    url("fonts/noto-serif-jp-v21-japanese-900.woff2") format("woff2");
+}
+
+/* noto-sans-jp-100 - japanese */
+@font-face {
+  font-family: "Noto Sans JP";
+  font-style: normal;
+  font-weight: 100;
+  src: local(""),
+    url("fonts/noto-sans-jp-v42-japanese-100.woff2") format("woff2");
+}
+/* noto-sans-jp-300 - japanese */
+@font-face {
+  font-family: "Noto Sans JP";
+  font-style: normal;
+  font-weight: 300;
+  src: local(""),
+    url("fonts/noto-sans-jp-v42-japanese-300.woff2") format("woff2");
+}
+/* noto-sans-jp-regular - japanese */
+@font-face {
+  font-family: "Noto Sans JP";
+  font-style: normal;
+  font-weight: 400;
+  src: local(""),
+    url("fonts/noto-sans-jp-v42-japanese-regular.woff2") format("woff2");
+}
+/* noto-sans-jp-700 - japanese */
+@font-face {
+  font-family: "Noto Sans JP";
+  font-style: normal;
+  font-weight: 700;
+  src: local(""),
+    url("fonts/noto-sans-jp-v42-japanese-700.woff2") format("woff2");
+}
+/* noto-sans-jp-500 - japanese */
+@font-face {
+  font-family: "Noto Sans JP";
+  font-style: normal;
+  font-weight: 500;
+  src: local(""),
+    url("fonts/noto-sans-jp-v42-japanese-500.woff2") format("woff2");
+}
+/* noto-sans-jp-900 - japanese */
+@font-face {
+  font-family: "Noto Sans JP";
+  font-style: normal;
+  font-weight: 900;
+  src: local(""),
+    url("fonts/noto-sans-jp-v42-japanese-900.woff2") format("woff2");
+}
+
+/* roboto-100 - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 100;
+  src: local(''),
+       url('fonts/roboto-v30-latin-100.woff2') format('woff2');
+}
+/* roboto-300 - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: local(''),
+       url('fonts/roboto-v30-latin-300.woff2') format('woff2');
+}
+/* roboto-regular - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local(''),
+       url('fonts/roboto-v30-latin-regular.woff2') format('woff2');
+}
+/* roboto-500 - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local(''),
+       url('fonts/roboto-v30-latin-500.woff2') format('woff2');
+}
+/* roboto-700 - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: local(''),
+       url('fonts/roboto-v30-latin-700.woff2') format('woff2');
+}
+/* roboto-900 - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local(''),
+       url('fonts/roboto-v30-latin-900.woff2') format('woff2');
+}
