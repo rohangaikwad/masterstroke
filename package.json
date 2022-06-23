@@ -1,29 +1,42 @@
 {
-    "name": "masterstroke",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "deploy": "gh-pages -d public",
-        "start": "http-server",
-        "css": "node-sass public/css/style.scss public/css/style.css -w"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/rohangaikwad/masterstroke.git"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "ISC",
-    "bugs": {
-        "url": "https://github.com/rohangaikwad/masterstroke/issues"
-    },
-    "homepage": "https://github.com/rohangaikwad/masterstroke#readme",
-    "devDependencies": {
-        "svg-parser": "^2.0.4"
-    },
-    "dependencies": {
-        "gh-pages": "^3.1.0"
-    }
+  "name": "masterstroke-react",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.1.1",
+    "@fortawesome/free-regular-svg-icons": "5.15.4",
+    "@fortawesome/react-fontawesome": "^0.1.18",
+    "@types/react": "^18.0.12",
+    "fabric": "^5.2.1",
+    "fontfaceobserver": "^2.3.0",
+    "gh-pages": "^4.0.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-scripts": "5.0.1",
+    "sass": "^1.52.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "deploy": "gh-pages -d build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
 }
