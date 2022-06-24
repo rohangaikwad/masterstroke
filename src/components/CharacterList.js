@@ -16,8 +16,10 @@ const Component = () => {
     return <div id="charlist-container">
         <ul id="char-list">
             {hiraganaChars.map((c,k) => <li className={playSound ? "sound": ""} onClick={() => {
-                if(playSound) document.getElementById(`audio_${c.hex}`).play();
-                else {
+                if(playSound) {                    
+                    document.getElementById(`audio_${c.hex}`).currentTime = 0
+                    document.getElementById(`audio_${c.hex}`).play();
+                } else {
                     setActiveChar(k);
                     setCharListVisibility(false)
                 }
