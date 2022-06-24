@@ -4,7 +4,7 @@ import FaIcon, { Icons } from "./FaIcon";
 
 const Character = () => {
 
-    const {activeChar, setActiveChar, hiragana, setCharListVisibility} = useContext(CommonContext);
+    const {activeChar, setActiveChar, hiragana, setCharListVisibility, toggleSettings} = useContext(CommonContext);
     const [svgDoc, setSvgDoc] = useState(null);
     const [svgReady, setSvgReady] = useState(false);
 
@@ -79,7 +79,7 @@ const Character = () => {
                 </div>
 
                 <div className="variants">
-                    {new Array(3).fill(0).map((v,i) => <div key={i}>{hiragana[activeChar].char}</div>)}
+                    {new Array(4).fill(0).map((v,i) => <div key={i}>{hiragana[activeChar].char}</div>)}
                 </div>
 
                 <div className="next" onClick={() => navChar(1)}>
@@ -90,6 +90,10 @@ const Character = () => {
                 <FaIcon icon={Icons.volume} click={playSound} />
                 <audio ref={audioRef} src={`/mp3/${hiragana[activeChar].romanization}.mp3`} />
                 <div className="romanization">{hiragana[activeChar].romanization}</div>
+            </div>
+            
+            <div className="open-settings">
+                <FaIcon icon={Icons.sliders} click={() => toggleSettings(true)} />
             </div>
         </div> 
         : <div>null</div>}

@@ -6,11 +6,9 @@ import { CommonContext } from "../contexts/CommonContext";
 let timeoutId = 0;
 const Component = () => {
 
-    const {activeChar, hiragana} = useContext(CommonContext);
+    const {activeChar, hiragana, fidelity, boxSize} = useContext(CommonContext);
 
     const canvas = useRef(null);
-    const [fidelity, setFidelity] = useState(.75);
-    const [boxSize, setBoxSize] = useState(120);
     const rows = useRef(Math.floor(window.innerHeight/boxSize));
     const cols = useRef(Math.ceil(window.innerWidth/boxSize));
 
@@ -39,7 +37,14 @@ const Component = () => {
     }, [])
 
     useEffect(() => {
-        UpdateCanvas();
+        console.log(boxSize)
+        rows.current = Math.floor(window.innerHeight/boxSize);
+        cols.current = Math.ceil(window.innerWidth/boxSize);
+        
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+            UpdateCanvas();
+        }, 250)
     }, [fidelity, activeChar, boxSize]);
 
     const UpdateCanvas = () => {
