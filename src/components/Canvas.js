@@ -39,13 +39,10 @@ const Component = () => {
     }, [])
 
     useEffect(() => {
-        console.log("render");
         UpdateCanvas();
     }, [fidelity, activeChar, boxSize]);
 
     const UpdateCanvas = () => {
-        console.log("update");
-
         let container = document.getElementById("canvas-container");
         let w = container.clientWidth * fidelity;
         let h = container.clientHeight * fidelity;

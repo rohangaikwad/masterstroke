@@ -7,7 +7,6 @@ const Character = () => {
     const {activeChar, setActiveChar, hiragana, setCharListVisibility} = useContext(CommonContext);
     const [svgDoc, setSvgDoc] = useState(null);
     const [svgReady, setSvgReady] = useState(false);
-    console.log(hiragana[activeChar])
 
     useEffect(() => {
         fetch(`kanjivg/0${hiragana[activeChar].hex}.svg`)
@@ -18,18 +17,15 @@ const Character = () => {
             //console.log(doc)
             setSvgDoc(doc.children[0]);
             setSvgReady(true)
-            window.svgdoc = doc
         })
     }, [activeChar])
-
-    useEffect(() => {
-
-    }, [svgDoc])
 
     const navChar = (x) => {
         let newChar = activeChar + x;
         newChar %= hiragana.length;
         newChar = Math.max(0, newChar);
+
+        if(hiragana[newChar].char === null) newChar += x;
         setActiveChar(newChar);
     }
 

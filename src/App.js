@@ -10,7 +10,6 @@ const App = () => {
 
   useEffect(() => {
     setFont(Fonts[0].name);
-    console.log(Fonts);
 
     Promise.all([
       new FontFaceObserver("Kokoro", { weight: 400 }).load("あ"),
