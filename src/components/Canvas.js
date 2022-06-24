@@ -64,7 +64,7 @@ const Component = () => {
                     top: (h/rows.current) * (0.5 + y), 
                     left: (w/cols.current) * (0.5 + x),
                     originX: 'center', originY: 'center', fontSize: fs, fontFamily: "Kokoro",
-                    opacity: 1/(x+1),
+                    opacity: Math.pow(1/(x+1),1.1),
                     fill: getComputedStyle(document.querySelector(':root')).getPropertyValue("--clr-4").trim()
                 }));
             }
