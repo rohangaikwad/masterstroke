@@ -89,7 +89,7 @@ ul#char-list {
         .eng { font-family: 'Roboto'; }
 
         &.sound {
-            height: 80px;
+            justify-content: flex-start;
             .jp { font-size: 36px; }
         }
     }
