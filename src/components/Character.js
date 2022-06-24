@@ -74,13 +74,17 @@ const Character = () => {
                 {svgReady && <SVGElem />}
             </div>
             <div className="prev-next">
-                <div className="prev" onClick={() => navChar(-1)}>&lt;</div>
+                <div className="prev" onClick={() => navChar(-1)}>
+                    <FaIcon icon={Icons.caretLeft} />
+                </div>
 
                 <div className="variants">
                     {new Array(3).fill(0).map((v,i) => <div key={i}>{hiragana[activeChar].char}</div>)}
                 </div>
 
-                <div className="next" onClick={() => navChar(1)}>&gt;</div>
+                <div className="next" onClick={() => navChar(1)}>
+                    <FaIcon icon={Icons.caretRight} />
+                </div>
             </div>
             <div className="sound">
                 <FaIcon icon={Icons.volume} click={playSound} />

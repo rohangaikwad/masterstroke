@@ -52,11 +52,11 @@ const Component = () => {
         canvas.current.backgroundColor = "transparent";
         canvas.current.renderAll();
 
-        let fs = w > h ? h/(rows.current * 1.25) : w/(cols.current * 1.25);
+        let fs = w > h ? h/(rows.current * 1.1) : w/(cols.current * 1.15);
         setCssCols(cols.current);
         setCssRows(rows.current);
 
-        for(let x = 0; x < 2; x++) {
+        for(let x = 0; x < cols.current; x++) {
             for(let y = 0; y < rows.current; y++) {
                 canvas.current.add(new fabric.Text(hiragana[activeChar].char, {
                     selectable: false, eventable: false,
@@ -64,7 +64,7 @@ const Component = () => {
                     top: (h/rows.current) * (0.5 + y), 
                     left: (w/cols.current) * (0.5 + x),
                     originX: 'center', originY: 'center', fontSize: fs, fontFamily: "Kokoro",
-                    opacity: x === 0 ? 1 : 0.4,
+                    opacity: 1/(x+1),
                     fill: getComputedStyle(document.querySelector(':root')).getPropertyValue("--clr-4").trim()
                 }));
             }
