@@ -1,5 +1,6 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { CommonContext } from "../contexts/CommonContext";
+import FaIcon, { Icons } from "./FaIcon";
 
 const Character = () => {
 
@@ -63,6 +64,12 @@ const Character = () => {
         </svg>
     }
 
+    const audioRef = useRef(null);
+    const playSound = () => {
+        console.log(audioRef.current)
+        audioRef.current.play();
+    }
+
     return <>
         {activeChar !== null 
         ? <div id="character">
@@ -75,10 +82,14 @@ const Character = () => {
 
                 <div className="variants">
                     {new Array(3).fill(0).map((v,i) => <div key={i}>{hiragana[activeChar].char}</div>)}
-                    <div>{hiragana[activeChar].romanization}</div>
                 </div>
 
                 <div className="next" onClick={() => navChar(1)}>&gt;</div>
+            </div>
+            <div className="sound">
+                <FaIcon icon={Icons.volume} click={playSound} />
+                <audio ref={audioRef} src={`/mp3/${hiragana[activeChar].romanization}.mp3`} />
+                <div className="romanization">{hiragana[activeChar].romanization}</div>
             </div>
         </div> 
         : <div>null</div>}

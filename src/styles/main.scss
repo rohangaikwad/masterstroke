@@ -14,8 +14,8 @@ body {
 
 
 #character {
-    display: flex; justify-content: space-between; padding-right: 30px;
-    svg path {
+    display: flex; justify-content: space-between; padding-right: 30px; align-items: center;
+    .char-display svg path {
         fill: none; stroke-width: 2; stroke: white;
         animation: draw 0.5s infinite linear; animation-fill-mode: forwards;
     }
@@ -30,7 +30,10 @@ body {
         .variants {
             color: #fff; column-gap: 0; display: flex; justify-content: center; align-items: center; margin: 0 15px;
             div {
-                border: solid 1px transparent; font-size: 80px;
+                border: solid 1px transparent; font-size: 80px; height: 80px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 &:nth-child(3) { font-family: "BIZ UDPMincho"; }
                 &:nth-child(2) { font-family: "Noto Serif JP"; }
                 &:nth-child(1) { font-family: "MHGKyokashotaiTHK"; }
@@ -38,6 +41,13 @@ body {
             }
         }
     }
+    .sound {
+        height: 60px; background: var(--clr-4); border-radius: 10px; cursor: pointer; display: flex; align-items: center; padding: 0; 
+        svg { width: 60px; height: 60px; background: var(--clr-2); padding: 10px; border-radius: 10px; } 
+        path { fill: white; } 
+        .romanization { padding: 0 20px; color: #fff; font-size: 30px; font-family: Arial; }
+    }
+    
 }
 
 @keyframes draw {
@@ -78,7 +88,7 @@ header {
 #canvas-container {
     background-color: rgba(0,0,0,0.1);
     flex: 1; position: relative;
-    margin: 30px;
+    margin: 30px; margin-top: 0;
     //background-color: var(--clr-1);
     .canvas-container {
         width: 100%!important; height: 100%!important; overflow: hidden;

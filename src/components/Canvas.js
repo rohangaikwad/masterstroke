@@ -3,16 +3,19 @@ import { useEffect, useRef } from "react";
 import {fabric} from 'fabric';
 import { CommonContext } from "../contexts/CommonContext";
 
+let timeoutId = 0;
 const Component = () => {
 
     const {activeChar, hiragana} = useContext(CommonContext);
 
     const canvas = useRef(null);
     const [fidelity, setFidelity] = useState(.75);
+    const [boxSize, setBoxSize] = useState(120);
+    const rows = useRef(Math.floor(window.innerHeight/boxSize));
+    const cols = useRef(Math.ceil(window.innerWidth/boxSize));
 
-    const boxSize = 120;
-    const [cols, setCols] = useState(Math.ceil(window.innerWidth/boxSize));
-    const [rows, setRows] =useState(Math.floor(window.innerHeight/boxSize))
+    const [cssRows, setCssRows] = useState(rows.current);
+    const [cssCols, setCssCols] = useState(cols.current);
 
     useEffect(() => {
         // init canvas
@@ -25,31 +28,44 @@ const Component = () => {
         canvas.current.freeDrawingBrush.color = "#fff"
         canvas.current.freeDrawingBrush.width = 4 * fidelity
         UpdateCanvas();
+        window.addEventListener('resize', () => {
+            cols.current = Math.ceil(window.innerWidth/boxSize);
+            rows.current = Math.floor(window.innerHeight/boxSize);
+            clearTimeout(timeoutId);
+            timeoutId = setTimeout(() => {
+                UpdateCanvas();
+            }, 250)
+        });
     }, [])
 
     useEffect(() => {
         console.log("render");
         UpdateCanvas();
-    }, [fidelity, activeChar])
+    }, [fidelity, activeChar, boxSize]);
 
     const UpdateCanvas = () => {
+        console.log("update");
+
         let container = document.getElementById("canvas-container");
         let w = container.clientWidth * fidelity;
         let h = container.clientHeight * fidelity;
 
-        canvas.current.clear();
+        canvas.current.clear();        
+        canvas.current.setDimensions({width:w, height:h});
         canvas.current.backgroundColor = "transparent";
         canvas.current.renderAll();
 
-        let fs = w > h ? h/(rows*1.25) : w/(cols*1.25)
+        let fs = w > h ? h/(rows.current * 1.25) : w/(cols.current * 1.25);
+        setCssCols(cols.current);
+        setCssRows(rows.current);
 
         for(let x = 0; x < 2; x++) {
-            for(let y = 0; y < rows; y++) {
+            for(let y = 0; y < rows.current; y++) {
                 canvas.current.add(new fabric.Text(hiragana[activeChar].char, {
                     selectable: false, eventable: false,
                     fontWeight: 'normal', textAlign: 'left',
-                    top: (h/rows) * (0.5 + y), 
-                    left: (w/cols) * (0.5 + x),
+                    top: (h/rows.current) * (0.5 + y), 
+                    left: (w/cols.current) * (0.5 + x),
                     originX: 'center', originY: 'center', fontSize: fs, fontFamily: "Kokoro",
                     opacity: x === 0 ? 1 : 0.4,
                     fill: getComputedStyle(document.querySelector(':root')).getPropertyValue("--clr-4").trim()
@@ -60,10 +76,10 @@ const Component = () => {
 
     return <div id="canvas-container">
         <div className="lines rows light">
-            {new Array(rows*2 - 1).fill(0).map((i,k) => <div key={k} />)}
+            {new Array(cssRows * 2 - 1).fill(0).map((i,k) => <div key={k} />)}
         </div>
         <div className="lines cols light">
-            {new Array(cols*2 - 1).fill(0).map((i,k) => <div key={k} />)}
+            {new Array(cssCols * 2 - 1).fill(0).map((i,k) => <div key={k} />)}
         </div>
         <canvas id="c"></canvas>
     </div>
